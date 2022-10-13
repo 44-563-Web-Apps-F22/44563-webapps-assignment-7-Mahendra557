@@ -31,28 +31,46 @@
 		</div>
         <br>
         <div>
-            <input id="cyc" type="text">
+            <input id="input" type="text">
         </div>
         
 	
-	<p> Press the button to create an new element of type div and then add it to the container.
+	    <p> Press the button to create an new element of type div and then add it to the container.
 		</p>
-		<button onclick="makeNewDiv()">Add value</button>
-	
-	
-</body>
-<script>
-	function makeNewDiv(){
-		/* make the div and its text */
-		let element = document.createElement("div")
-        let value = document.getElementById("cyc").value
-		element.innerHTML = value
-		element.style.color = "flex-container"
+		<button onclick="makeNewDiv()">Add value</button><br><br>
+        <button onclick="get()">Get</button><br><br>
+        <button onclick="spin()">Spin</button><br><br>
+        <script>
+            function makeNewDiv() {
+            let element = document.createElement("div")
+            let value = document.getElementById("input").value
+            element.innerHTML = value
+            element.className = "cycler"
+            let container = document.getElementById("target")
+            container.appendChild(element)
+        }
 
-		/* add it to the container */
-		let container = document.getElementById('target')
-		container.appendChild(element)
-		
-	}
+        function get() {
+            let cyclerItems = document.getElementsByClassName("cycler")
+            if(cyclerItems.length > 0) {
+                cyclerItems[cyclerItems.length-1].remove()
+            }
+        }
+
+        function spin() {
+            let cyclerItems = document.getElementsByClassName("cycler")
+
+            if(cyclerItems.length > 1) 
+            {
+                itemRemoved = cyclerItems[cyclerItems.length-1]
+                cyclerItems[cyclerItems.length-1].remove()
+                
+                let container = document.getElementById("target")
+                container.insertBefore(itemRemoved, container.firstChild)
+            }
+        }
+
 </script>
+</body>
+
 </html>	
