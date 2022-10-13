@@ -101,13 +101,16 @@
         </div>
         <div class="col-md-2 padding"><img id="img24" src="treasure.jpg" onclick="check(24)" alt="treasure" style="height:100px;width:100px;">
         </div>
+        <div class="container text-center">
+            <button type="reset" onclick="reset()">Reset</button>
+        </div>
     </div>
 
     <script>
         let chestCount = 0;
         let score = 0;
         let lastCheck = 12;
-        let treasureLocation = 18;
+        let treasureLocation = Math.floor(Math.random() * 25);
         
         let ids = ["img0", "img1", "img2", "img3", "img4", "img5", "img6", "img7", "img8", "img9", "img10", "img11", "img12", "img13", "img14", "img15", "img16", "img17", "img18", "img19", "img20", "img21", "img22", "img23", "img24"]
 
@@ -155,6 +158,22 @@
                     document.getElementById("help").innerHTML = "Sorry, no help available"
                 }
             }
+
+            function reset(){
+                score = 0;
+                document.getElementById("chests").innerHTML = "Number of chests checked is " + 0;
+                document.getElementById("score").innerHTML = "Score is " + score;
+                treasureLocation = Math.floor(Math.random() * 24)
+                while(treasureLocation == 12) {
+                    treasureLocation = Math.floor(Math.random() * 24)
+                }
+                for(let i = 0; i < 24; i++) {
+                    if(i != 12) {
+                        document.getElementById(ids[i]).src = "treasure.jpg"
+                    }
+                }
+            }
+                
         
     </script>
 </body>
